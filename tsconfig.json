@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "module": "nodenext"
+  },
+  "include": ["0*/**/*", "test/**/*"]
+}

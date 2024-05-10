@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-worker-threads-talk",
+  "type": "module",
+  "version": "1.2.3",
+  "private": true,
+  "description": "",
+  "scripts": {
+    "test": "concurrently 'npm:test:*'",
+    "test:node": "node --test test/*.test.js",
+    "test:prettier": "prettier **/*.js --write",
+    "test:typescript": "tsc",
+    "test:eslint": "eslint --max-warnings=0 ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.27.0",
+    "jimp": "^0.22.12",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@jest/expect": "^29.7.0",
+    "@types/node": "^20.12.11",
+    "@types/yargs": "^17.0.32",
+    "concurrently": "^8.2.2",
+    "eslint": "^9.2.0",
+    "execa": "^9.0.2",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5"
+  }
+}
