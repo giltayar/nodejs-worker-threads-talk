@@ -1,6 +1,7 @@
 import fastify from 'fastify'
 import fs from 'fs'
 import Jimp from 'jimp'
+import {fileURLToPath} from 'url'
 
 const app = fastify()
 
@@ -23,7 +24,7 @@ app.get('/heavy/:file', async (request, response) => {
     import.meta.url,
   )
 
-  const file = await Jimp.read(imageFileUrl.pathname)
+  const file = await Jimp.read(fileURLToPath(imageFileUrl))
 
   const imageBuffer = file.rotate(-45).getBufferAsync(Jimp.MIME_JPEG)
 
