@@ -25,9 +25,7 @@ app.get('/heavy/:file', async (request, response) => {
 
   const file = await Jimp.read(imageFileUrl.pathname)
 
-  console.time('a')
   const imageBuffer = file.rotate(-45).getBufferAsync(Jimp.MIME_JPEG)
-  console.timeEnd('a')
 
   response.type('image/jpeg')
 

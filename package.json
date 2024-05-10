@@ -23,6 +23,7 @@
     "@jest/expect": "^29.7.0",
     "@types/node": "^20.12.11",
     "@types/yargs": "^17.0.32",
+    "autocannon": "^7.15.0",
     "concurrently": "^8.2.2",
     "eslint": "^9.2.0",
     "execa": "^9.0.2",
