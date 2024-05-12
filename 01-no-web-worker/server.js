@@ -5,6 +5,8 @@ import {fileURLToPath} from 'url'
 
 const app = fastify()
 
+
+
 app.get('/image/:file', (request, response) => {
   const imageFileUrl = new URL(
     //@ts-expect-error
@@ -17,6 +19,8 @@ app.get('/image/:file', (request, response) => {
   response.send(fs.createReadStream(imageFileUrl))
 })
 
+const cache = new Map()
+
 app.get('/heavy/:file', async (request, response) => {
   const imageFileUrl = new URL(
     //@ts-expect-error
@@ -24,9 +28,10 @@ app.get('/heavy/:file', async (request, response) => {
     import.meta.url,
   )
 
-  const file = await Jimp.read(fileURLToPath(imageFileUrl))
+  const file = cache.get(imageFileUrl.href) ?? await Jimp.read(fileURLToPath(imageFileUrl))
+  cache.set(imageFileUrl.href, file)
 
-  const imageBuffer = await file.rotate(-45).getBufferAsync(Jimp.MIME_JPEG)
+  const imageBuffer = await file.clone().flip(true, false).getBufferAsync(Jimp.MIME_JPEG)
 
   response.type('image/jpeg')
 
