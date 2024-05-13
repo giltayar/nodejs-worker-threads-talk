@@ -39,21 +39,26 @@ app.get('/heavy/:file', async (request, response) => {
 
   worker.postMessage({imageFilePath: fileURLToPath(imageFileUrl), messageId})
 
-  function findMessage() {
-    return new Promise((resolve) => {
-      const listener = (/** @type {{ messageId: string; }} */ message) => {
-        if (message.messageId === messageId) {
-          worker.off('message', listener)
-          resolve(message)
-        }
-      };
-      worker.on('message', listener)
-    })
-  }
-  const {imageBuffer} = await findMessage()
+  const {imageBuffer} = await waitForResponseMessage(worker, messageId)
 
   response.type('image/jpeg')
   return imageBuffer
 })
 
 await app.listen({port: parseInt(process.env.PORT ?? '3000') || 3000})
+
+/**
+ * @param {Worker} worker
+ * @param {string} messageId
+ */
+function waitForResponseMessage(worker, messageId) {
+  return new Promise((resolve) => {
+    const listener = (/** @type {{ messageId: string; }} */ message) => {
+      if (message.messageId === messageId) {
+        worker.off('message', listener)
+        resolve(message)
+      }
+    };
+    worker.on('message', listener)
+  })
+}

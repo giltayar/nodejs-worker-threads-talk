@@ -19,21 +19,26 @@ app.get('/pi', async (request, response) => {
 
   worker.postMessage({digits, returnBuffer: piResultBuffer, messageId})
 
-  function findMessage() {
-    return new Promise((resolve) => {
-      const listener = (/** @type {{ messageId: string; }} */ message) => {
-        if (message.messageId === messageId) {
-          worker.off('message', listener)
-          resolve(message)
-        }
-      }
-      worker.on('message', listener)
-    })
-  }
-  await findMessage()
+  await waitForResponseMessage(worker, messageId)
 
   response.type('text/plain')
   return Buffer.from(piResultBuffer)
 })
 
 await app.listen({port: parseInt(process.env.PORT ?? '3000') || 3000})
+
+/**
+ * @param {Worker} worker
+ * @param {string} messageId
+ */
+function waitForResponseMessage(worker, messageId) {
+  return new Promise((resolve) => {
+    const listener = (/** @type {{ messageId: string; }} */ message) => {
+      if (message.messageId === messageId) {
+        worker.off('message', listener)
+        resolve(message)
+      }
+    }
+    worker.on('message', listener)
+  })
+}
