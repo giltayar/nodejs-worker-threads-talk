@@ -11,6 +11,6 @@ parentPort?.on('message', async (message) => {
 
   new Uint8Array(piResultBuffer).set(new TextEncoder().encode(piString))
 
-  Atomics.store(msgAck, 0, 1)
+  Atomics.store(msgAck, 0, 0)
   Atomics.notify(msgAck, 0)
 })

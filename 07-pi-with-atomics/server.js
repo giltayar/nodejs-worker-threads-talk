@@ -14,7 +14,11 @@ app.get('/pi', async (request, response) => {
 
   worker.postMessage({digits, piResultBuffer, msgAck})
 
-  Atomics.wait(msgAck, 0, 0)
+  const waitResult = Atomics.waitAsync(msgAck, 0, 0)
+
+  if (waitResult.async) {
+    await waitResult.value
+  }
 
   response.type('text/plain')
   return Buffer.from(piResultBuffer)
