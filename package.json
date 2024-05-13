@@ -17,6 +17,7 @@
   "dependencies": {
     "fastify": "^4.27.0",
     "jimp": "^0.22.12",
+    "piscina": "^4.4.0",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
