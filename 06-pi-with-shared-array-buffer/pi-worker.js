@@ -9,7 +9,7 @@ parentPort?.on('message', async (message) => {
 
   const piString = computePi(digits)
 
-  new Uint8Array(returnBuffer).set(new TextEncoder().encode(piString))
+  new Int8Array(returnBuffer).set(new TextEncoder().encode(piString))
 
   parentPort?.postMessage({messageId})
 })

@@ -1,7 +1,4 @@
-import {once} from 'events'
 import fastify from 'fastify'
-import fs from 'fs'
-import {fileURLToPath} from 'node:url'
 import {Worker} from 'node:worker_threads'
 import crypto from 'node:crypto'
 
