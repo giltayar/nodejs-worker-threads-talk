@@ -15,11 +15,8 @@ const workers = Array(10)
 let nextWorker = 0
 
 app.get('/image/:file', (request, response) => {
-  const imageFileUrl = new URL(
-    //@ts-expect-error
-    `../images/${request.params.file}.jpg`,
-    import.meta.url,
-  )
+  const params = /**@type {any}*/ (request.params)
+  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url)
 
   response.type('image/jpeg')
 
@@ -27,11 +24,8 @@ app.get('/image/:file', (request, response) => {
 })
 
 app.get('/heavy/:file', async (request, response) => {
-  const imageFileUrl = new URL(
-    //@ts-expect-error
-    `../images/${request.params.file}.jpg`,
-    import.meta.url,
-  )
+  const params = /**@type {any}*/ (request.params)
+  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url)
 
   const messageId = crypto.randomUUID()
 
