@@ -7,7 +7,6 @@ worker.unref()
  * @param {number} ms
  */
 function waitSync(ms) {
-
   const msgAck = new Int32Array(new SharedArrayBuffer(4))
 
   worker.postMessage({msgAck, wait: ms})
@@ -18,4 +17,3 @@ function waitSync(ms) {
 console.time('waiting')
 waitSync(2000)
 console.timeEnd('waiting')
-

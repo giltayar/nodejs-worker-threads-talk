@@ -6,9 +6,7 @@ const app = fastify()
 
 const workers = Array(10)
   .fill(0)
-  .map(
-    (_) => new Worker(new URL('./image-rotation-worker.js', import.meta.url)),
-  )
+  .map((_) => new Worker(new URL('./image-rotation-worker.js', import.meta.url)))
 
 let nextWorker = 0
 

@@ -1,5 +1,5 @@
 import {parentPort} from 'node:worker_threads'
-import { setTimeout } from 'node:timers/promises'
+import {setTimeout} from 'node:timers/promises'
 
 parentPort?.on('message', async (message) => {
   /**

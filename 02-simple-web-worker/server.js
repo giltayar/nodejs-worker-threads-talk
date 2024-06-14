@@ -5,9 +5,7 @@ import crypto from 'node:crypto'
 
 const app = fastify()
 
-const worker = new Worker(
-  new URL('./image-rotation-worker.js', import.meta.url),
-)
+const worker = new Worker(new URL('./image-rotation-worker.js', import.meta.url))
 
 app.get('/heavy/:file', async (request, response) => {
   const params = /**@type {any}*/ (request.params)
