@@ -1,10 +1,11 @@
+import * as os from 'node:os'
 import {on} from 'node:events'
 import fastify from 'fastify'
 import {Worker} from 'node:worker_threads'
 
 const app = fastify()
 
-const workers = Array(10)
+const workers = Array(os.availableParallelism())
   .fill(0)
   .map((_) => new Worker(new URL('./image-rotation-worker.js', import.meta.url)))
 

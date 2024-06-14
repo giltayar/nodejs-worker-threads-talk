@@ -3,7 +3,7 @@ import {Worker} from 'node:worker_threads'
 
 const app = fastify()
 
-const workers = Array(10)
+const workers = Array(os.availableParallelism())
   .fill(0)
   .map((_) => new Worker(new URL('./pi-worker.js', import.meta.url)))
 
