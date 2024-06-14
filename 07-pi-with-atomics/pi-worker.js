@@ -1,12 +1,7 @@
 import {computePi} from './compute-pi.js'
 import {parentPort} from 'node:worker_threads'
 
-parentPort?.on('message', async (message) => {
-  /**
-   * @type {{digits: number, piResultBuffer: SharedArrayBuffer, msgAck: Int32Array}}
-   */
-  const {digits, piResultBuffer, msgAck} = message
-
+parentPort?.on('message', async ({digits, piResultBuffer, msgAck}) => {
   const piString = computePi(digits)
 
   new Uint8Array(piResultBuffer).set(new TextEncoder().encode(piString))
