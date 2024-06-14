@@ -6,7 +6,9 @@ import Jimp from 'jimp'
 export default async function flip(imageFilePath) {
   const file = await Jimp.read(imageFilePath)
 
-  const imageBuffer = await file.clone().flip(true, false).getBufferAsync(Jimp.MIME_JPEG)
+  const manipulatedImage = file.clone().flip(true, false)
+
+  const imageBuffer = await manipulatedImage.getBufferAsync(Jimp.MIME_JPEG)
 
   return imageBuffer
 }

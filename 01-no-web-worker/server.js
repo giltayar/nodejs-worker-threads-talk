@@ -20,10 +20,9 @@ app.get('/heavy/:file', async (request, response) => {
 
   const file = await Jimp.read(fileURLToPath(imageFileUrl))
 
-  const imageBuffer = await file
-    .clone()
-    .flip(true, false)
-    .getBufferAsync(Jimp.MIME_JPEG)
+  const manipulatedImage = file.clone().flip(true, false)
+
+  const imageBuffer = await manipulatedImage.getBufferAsync(Jimp.MIME_JPEG)
 
   response.type('image/jpeg')
 
