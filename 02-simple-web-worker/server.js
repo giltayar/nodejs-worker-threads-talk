@@ -11,15 +11,6 @@ const worker = new Worker(
   new URL('./image-rotation-worker.js', import.meta.url),
 )
 
-app.get('/image/:file', (request, response) => {
-  const params = /**@type {any}*/ (request.params)
-  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url)
-
-  response.type('image/jpeg')
-
-  response.send(fs.createReadStream(imageFileUrl))
-})
-
 app.get('/heavy/:file', async (request, response) => {
   const params = /**@type {any}*/ (request.params)
   const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url)
