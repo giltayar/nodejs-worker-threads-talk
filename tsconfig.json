@@ -6,5 +6,5 @@
     "noEmit": true,
     "module": "nodenext"
   },
-  "include": ["0*/**/*", "test/**/*"]
+  "include": ["0*/**/*", "test/**/*", "06-pi-with-shared-array-buffer"]
 }
