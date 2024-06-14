@@ -1,8 +1,9 @@
 import Jimp from 'jimp'
 import {parentPort} from 'node:worker_threads'
+import {fileURLToPath} from 'node:url'
 
-parentPort?.on('message', async ({imageFilePath, messageId}) => {
-  const file = await Jimp.read(imageFilePath)
+parentPort?.on('message', async ({imageFileUrl, messageId}) => {
+  const file = await Jimp.read(fileURLToPath(imageFileUrl))
 
   const manipulatedImage = file.clone().flip(true, false)
 

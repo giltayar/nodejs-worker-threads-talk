@@ -10,9 +10,9 @@ const workerPool = new Piscina({
 
 app.get('/heavy/:file', async (request, response) => {
   const params = /**@type {any}*/ (request.params)
-  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url)
+  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url).href
 
-  const imageBuffer = await workerPool.run(fileURLToPath(imageFileUrl))
+  const imageBuffer = await workerPool.run(imageFileUrl)
 
   response.type('image/jpeg')
   return imageBuffer

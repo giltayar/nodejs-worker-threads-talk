@@ -1,6 +1,5 @@
-import {on, once} from 'node:events'
+import {on} from 'node:events'
 import fastify from 'fastify'
-import {fileURLToPath} from 'node:url'
 import {Worker} from 'node:worker_threads'
 import crypto from 'node:crypto'
 
@@ -12,11 +11,11 @@ const worker = new Worker(
 
 app.get('/heavy/:file', async (request, response) => {
   const params = /**@type {any}*/ (request.params)
-  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url)
+  const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url).href
 
   const messageId = crypto.randomUUID()
 
-  worker.postMessage({imageFilePath: fileURLToPath(imageFileUrl), messageId})
+  worker.postMessage({imageFileUrl, messageId})
 
   const {imageBuffer} = await waitForResponseMessage(worker, messageId)
 
