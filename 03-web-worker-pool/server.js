@@ -29,7 +29,7 @@ app.get('/heavy/:file', async (request, response) => {
   return imageBuffer
 })
 
-await app.listen({port: parseInt(process.env.PORT ?? '3000') || 3000})
+await app.listen({port: parseInt(process.env.PORT ?? '3000')})
 
 /**
  * @param {Worker} worker

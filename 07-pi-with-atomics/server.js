@@ -30,4 +30,4 @@ app.get('/pi', async (request, response) => {
   return Buffer.from(piResultBuffer)
 })
 
-await app.listen({port: parseInt(process.env.PORT ?? '3000') || 3000})
+await app.listen({port: parseInt(process.env.PORT ?? '3000')})
