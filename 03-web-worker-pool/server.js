@@ -1,6 +1,5 @@
-import {once} from 'events'
+import {on} from 'node:events'
 import fastify from 'fastify'
-import fs from 'fs'
 import {fileURLToPath} from 'node:url'
 import {Worker} from 'node:worker_threads'
 
@@ -36,14 +35,10 @@ await app.listen({port: parseInt(process.env.PORT ?? '3000') || 3000})
  * @param {Worker} worker
  * @param {string} messageId
  */
-function waitForResponseMessage(worker, messageId) {
-  return new Promise((resolve) => {
-    const listener = (/** @type {{ messageId: string; }} */ message) => {
-      if (message.messageId === messageId) {
-        worker.off('message', listener)
-        resolve(message)
-      }
-    };
-    worker.on('message', listener)
-  })
+async function waitForResponseMessage(worker, messageId) {
+  for await (const [message] of on(worker, 'message')) {
+    if (message.messageId === messageId) {
+      return message
+    }
+  }
 }

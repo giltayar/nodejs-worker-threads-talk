@@ -1,7 +1,5 @@
 import fastify from 'fastify'
-import fs from 'fs'
 import {fileURLToPath} from 'node:url'
-import {Worker} from 'node:worker_threads'
 import {Piscina} from 'piscina'
 
 const app = fastify()
