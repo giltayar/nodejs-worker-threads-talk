@@ -1,3 +1,4 @@
+import * as os from 'node:os'
 import {on} from 'node:events'
 import fastify from 'fastify'
 import {Worker} from 'node:worker_threads'
