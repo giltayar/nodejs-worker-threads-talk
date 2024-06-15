@@ -1,5 +1,4 @@
 import fastify from 'fastify'
-import fs from 'fs'
 import Jimp from 'jimp'
 import {fileURLToPath} from 'url'
 
