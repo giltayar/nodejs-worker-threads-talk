@@ -1,6 +1,7 @@
 import * as os from 'node:os'
 import fastify from 'fastify'
 import {Worker} from 'node:worker_threads'
+import {setTimeout} from 'node:timers/promises'
 
 const app = fastify()
 
@@ -16,12 +17,13 @@ app.get('/pi', async (request, response) => {
 
   const piResultBuffer = new SharedArrayBuffer(digits + 2)
   const msgAck = new Int32Array(new SharedArrayBuffer(4))
+  msgAck[0] = 1
 
   const worker = workers[nextWorker++ % 10]
 
   worker.postMessage({digits, piResultBuffer, msgAck})
 
-  const waitResult = Atomics.waitAsync(msgAck, 0, 0)
+  const waitResult = Atomics.waitAsync(msgAck, 0, 1)
 
   if (waitResult.async) {
     await waitResult.value

@@ -33,7 +33,7 @@ app.get('/pi', async (request, response) => {
 
   const worker = workers[nextWorker++ % 10]
 
-  worker.postMessage({digits, returnBuffer: piResultBuffer, messageId})
+  worker.postMessage({digits, piResultBuffer, messageId})
 
   await waitForResponseMessage(worker, messageId)
 

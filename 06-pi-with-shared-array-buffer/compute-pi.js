@@ -31,5 +31,6 @@ export function computePi(digits) {
   }
 
   const pi = a.plus(b).pow(2).dividedBy(t.times(4))
+
   return pi.toFixed(digits)
 }

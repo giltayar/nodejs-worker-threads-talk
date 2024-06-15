@@ -4,8 +4,10 @@ import {parentPort} from 'node:worker_threads'
 parentPort?.on('message', async ({digits, piResultBuffer, msgAck}) => {
   const piString = computePi(digits)
 
-  new Uint8Array(piResultBuffer).set(new TextEncoder().encode(piString))
+  const returnBufferAsArray = new Uint8Array(piResultBuffer)
 
-  Atomics.store(msgAck, 0, 0)
+  new TextEncoder().encodeInto(piString, returnBufferAsArray);
+
+  Atomics.store(msgAck, 0, 2)
   Atomics.notify(msgAck, 0)
 })
