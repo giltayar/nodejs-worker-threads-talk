@@ -18,7 +18,8 @@
     "05": "autocannon http://localhost:3000/flip/some-image --on-port -- node 05-transfer-list/server.js",
     "06-sync": "autocannon http://localhost:3000/pi-sync --on-port -- node 06-pi-with-shared-array-buffer/server.js",
     "06": "autocannon http://localhost:3000/pi --on-port -- node 06-pi-with-shared-array-buffer/server.js",
-    "07": "autocannon http://localhost:3000/pi --on-port -- node 07-pi-with-atomics/server.js"
+    "07": "autocannon http://localhost:3000/pi --on-port -- node 07-pi-with-atomics/server.js",
+    "08": "node 08-async-to-sync/some-sync-code.js"
   },
   "keywords": [],
   "author": "",

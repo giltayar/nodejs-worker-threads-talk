@@ -9,6 +9,5 @@ parentPort?.on('message', async (message) => {
 
   await setTimeout(wait)
 
-  Atomics.store(msgAck, 0, 0)
   Atomics.notify(msgAck, 0)
 })
