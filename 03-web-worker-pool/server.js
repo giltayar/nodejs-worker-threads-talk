@@ -11,7 +11,7 @@ const workers = Array(os.availableParallelism())
 
 let nextWorker = 0
 
-app.get('/heavy/:file', async (request, response) => {
+app.get('/flip/:file', async (request, response) => {
   const params = /**@type {any}*/ (request.params)
   const imageFileUrl = new URL(`../images/${params.file}.jpg`, import.meta.url).href
 
