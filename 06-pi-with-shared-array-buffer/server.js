@@ -7,7 +7,9 @@ import {on} from 'node:events'
 
 const app = fastify()
 
-const workers = Array(os.availableParallelism())
+const numberOfWebWorkers = os.availableParallelism()
+
+const workers = Array(numberOfWebWorkers)
   .fill(0)
   .map((_) => new Worker(new URL('./pi-worker.js', import.meta.url)))
 
@@ -31,7 +33,7 @@ app.get('/pi', async (request, response) => {
 
   const piResultBuffer = new SharedArrayBuffer(digits + 2)
 
-  const worker = workers[nextWorker++ % 10]
+  const worker = workers[nextWorker++ % numberOfWebWorkers]
 
   worker.postMessage({digits, piResultBuffer, messageId})
 

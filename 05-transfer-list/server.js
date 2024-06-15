@@ -5,7 +5,9 @@ import {Worker} from 'node:worker_threads'
 
 const app = fastify()
 
-const workers = Array(os.availableParallelism())
+const numberOfWebWorkers = os.availableParallelism()
+
+const workers = Array(numberOfWebWorkers)
   .fill(0)
   .map((_) => new Worker(new URL('./image-rotation-worker.js', import.meta.url)))
 
@@ -17,7 +19,7 @@ app.get('/flip/:file', async (request, response) => {
 
   const messageId = crypto.randomUUID()
 
-  const worker = workers[nextWorker++ % 10]
+  const worker = workers[nextWorker++ % numberOfWebWorkers]
 
   worker.postMessage({imageFileUrl, messageId})
 
