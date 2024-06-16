@@ -26,15 +26,13 @@ app.get('/pi-sync', async (request, response) => {
 })
 
 app.get('/pi', async (request, response) => {
+  const worker = workers[nextWorker++ % numberOfWebWorkers]
   //@ts-expect-error
   const digits = request.query.digits ? parseInt(request.query.digits) : 100
 
-  const messageId = crypto.randomUUID()
-
   const piResultBuffer = new SharedArrayBuffer(digits + 2)
 
-  const worker = workers[nextWorker++ % numberOfWebWorkers]
-
+  const messageId = crypto.randomUUID()
   worker.postMessage({digits, piResultBuffer, messageId})
 
   await waitForResponseMessage(worker, messageId)

@@ -1,7 +1,6 @@
 import * as os from 'node:os'
 import fastify from 'fastify'
 import {Worker} from 'node:worker_threads'
-import {setTimeout} from 'node:timers/promises'
 
 const app = fastify()
 
@@ -14,14 +13,13 @@ const workers = Array(numberOfWebWorkers)
 let nextWorker = 0
 
 app.get('/pi', async (request, response) => {
+  const worker = workers[nextWorker++ % numberOfWebWorkers]
   //@ts-expect-error
   const digits = request.query.digits ? parseInt(request.query.digits) : 100
 
   const piResultBuffer = new SharedArrayBuffer(digits + 2)
   const msgAck = new Int32Array(new SharedArrayBuffer(4))
   msgAck[0] = 1
-
-  const worker = workers[nextWorker++ % numberOfWebWorkers]
 
   worker.postMessage({digits, piResultBuffer, msgAck})
 
