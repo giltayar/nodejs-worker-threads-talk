@@ -28,13 +28,11 @@
     "decimal.js": "^10.4.3",
     "fastify": "^4.27.0",
     "jimp": "^0.22.12",
-    "piscina": "^4.4.0",
-    "yargs": "^17.7.2"
+    "piscina": "^4.4.0"
   },
   "devDependencies": {
     "@jest/expect": "^29.7.0",
     "@types/node": "^20.12.11",
-    "@types/yargs": "^17.0.32",
     "autocannon": "^7.15.0",
     "concurrently": "^8.2.2",
     "eslint": "^9.2.0",

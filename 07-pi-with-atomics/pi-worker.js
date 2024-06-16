@@ -6,7 +6,7 @@ parentPort?.on('message', async ({digits, piResultBuffer, msgAck}) => {
 
   const returnBufferAsArray = new Uint8Array(piResultBuffer)
 
-  new TextEncoder().encodeInto(piString, returnBufferAsArray);
+  new TextEncoder().encodeInto(piString, returnBufferAsArray)
 
   Atomics.store(msgAck, 0, 2)
   Atomics.notify(msgAck, 0)

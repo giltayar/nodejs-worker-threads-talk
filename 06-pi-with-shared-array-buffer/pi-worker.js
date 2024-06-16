@@ -6,7 +6,7 @@ parentPort?.on('message', async ({digits, piResultBuffer, messageId}) => {
 
   const returnBufferAsArray = new Uint8Array(piResultBuffer)
 
-  new TextEncoder().encodeInto(piString, returnBufferAsArray);
+  new TextEncoder().encodeInto(piString, returnBufferAsArray)
 
   parentPort?.postMessage({messageId})
 })
