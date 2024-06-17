@@ -1,7 +1,7 @@
 import test from 'node:test'
+import assert from 'node:assert/strict'
 import fs from 'fs/promises'
 import {$} from 'execa'
-import {jestExpect as expect} from '@jest/expect'
 import waitPort from 'wait-port'
 
 test('01 works', async () => {
@@ -11,7 +11,7 @@ test('01 works', async () => {
 
   const image = await fetchFlippedImage()
 
-  expect(image).toEqual(flippedImage)
+  assert.deepEqual(image, flippedImage)
 
   command.kill('SIGKILL')
   await command.catch(() => {})
@@ -24,7 +24,7 @@ test('02 works', async () => {
 
   const image = await fetchFlippedImage()
 
-  expect(image).toEqual(flippedImage)
+  assert.deepEqual(image, flippedImage)
 
   command.kill('SIGKILL')
   await command.catch(() => {})
@@ -37,7 +37,7 @@ test('03 works', async () => {
 
   const image = await fetchFlippedImage()
 
-  expect(image).toEqual(flippedImage)
+  assert.deepEqual(image, flippedImage)
 
   command.kill('SIGKILL')
   await command.catch(() => {})
@@ -50,7 +50,7 @@ test('04 works', async () => {
 
   const image = await fetchFlippedImage()
 
-  expect(image).toEqual(flippedImage)
+  assert.deepEqual(image, flippedImage)
 
   command.kill('SIGKILL')
   await command.catch(() => {})
@@ -63,7 +63,7 @@ test('05 works', async () => {
 
   const image = await fetchFlippedImage()
 
-  expect(image).toEqual(flippedImage)
+  assert.deepEqual(image, flippedImage)
 
   command.kill('SIGKILL')
   await command.catch(() => {})
@@ -76,7 +76,7 @@ test('06 works', async () => {
 
   const piResult = await fetchPi()
 
-  expect(piResult).toEqual('3.1415926536')
+  assert.deepEqual(piResult, '3.1415926536')
 
   command.kill('SIGKILL')
   await command.catch(() => {})
@@ -89,7 +89,7 @@ test('07 works', async () => {
 
   const piResult = await fetchPi()
 
-  expect(piResult).toEqual('3.1415926536')
+  assert.deepEqual(piResult, '3.1415926536')
 
   command.kill('SIGKILL')
   await command.catch(() => {})
