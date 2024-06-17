@@ -9,7 +9,7 @@ const numberOfWebWorkers = os.availableParallelism()
 
 const workers = Array(numberOfWebWorkers)
   .fill(0)
-  .map((_) => new Worker(new URL('./image-rotation-worker.js', import.meta.url)))
+  .map(() => new Worker(new URL('./image-rotation-worker.js', import.meta.url)))
 
 let nextWorker = 0
 

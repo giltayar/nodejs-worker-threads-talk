@@ -11,7 +11,6 @@ export function computePi(digits) {
 
   const one = new Decimal(1)
   const two = new Decimal(2)
-  const four = new Decimal(4)
 
   let a = one
   let b = one.dividedBy(new Decimal(2).sqrt())

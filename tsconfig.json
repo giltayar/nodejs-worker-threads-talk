@@ -4,7 +4,9 @@
     "allowJs": true,
     "strict": true,
     "noEmit": true,
-    "module": "nodenext"
+    "module": "nodenext",
+    "resolveJsonModule": true,
+    "skipLibCheck": true
   },
-  "include": ["0*/**/*", "test/**/*", "src/06-pi-with-shared-array-buffer"]
+  "include": ["src/**/*", "test/**/*"]
 }

@@ -1,5 +1,4 @@
 import fastify from 'fastify'
-import {fileURLToPath} from 'node:url'
 import {Piscina} from 'piscina'
 
 const app = fastify()

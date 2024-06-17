@@ -7,7 +7,6 @@
   "scripts": {
     "test": "concurrently 'npm:test:*'",
     "test:node": "node --test test/*.test.js",
-    "test:node:debug": "node --inspect --test test/*.test.js",
     "test:prettier": "prettier **/*.js --write",
     "test:typescript": "tsc",
     "test:eslint": "eslint --max-warnings=0 .",
@@ -27,19 +26,21 @@
   "license": "ISC",
   "dependencies": {
     "decimal.js": "^10.4.3",
-    "fastify": "^4.27.0",
+    "fastify": "^4.28.0",
     "jimp": "^0.22.12",
-    "piscina": "^4.4.0"
+    "piscina": "^4.5.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.5.0",
     "@jest/expect": "^29.7.0",
-    "@types/node": "^20.12.11",
+    "@types/node": "^20.14.2",
     "autocannon": "^7.15.0",
     "concurrently": "^8.2.2",
-    "eslint": "^9.2.0",
-    "execa": "^9.0.2",
+    "eslint": "^9.5.0",
+    "execa": "^9.2.0",
     "expect": "^29.7.0",
-    "prettier": "^3.2.5",
+    "globals": "^15.6.0",
+    "prettier": "^3.3.2",
     "typescript": "^5.4.5",
     "wait-port": "^1.1.0"
   }
