@@ -9,7 +9,7 @@ test('01 works', async () => {
 
   await waitPort({host: 'localhost', port: 3000, output: 'silent'})
 
-  const image = await fetchSomeImage()
+  const image = await fetchFlippedImage()
 
   expect(image).toEqual(flippedImage)
 
@@ -22,7 +22,7 @@ test('02 works', async () => {
 
   await waitPort({host: 'localhost', port: 3000, output: 'silent'})
 
-  const image = await fetchSomeImage()
+  const image = await fetchFlippedImage()
 
   expect(image).toEqual(flippedImage)
 
@@ -35,7 +35,7 @@ test('03 works', async () => {
 
   await waitPort({host: 'localhost', port: 3000, output: 'silent'})
 
-  const image = await fetchSomeImage()
+  const image = await fetchFlippedImage()
 
   expect(image).toEqual(flippedImage)
 
@@ -48,7 +48,7 @@ test('04 works', async () => {
 
   await waitPort({host: 'localhost', port: 3000, output: 'silent'})
 
-  const image = await fetchSomeImage()
+  const image = await fetchFlippedImage()
 
   expect(image).toEqual(flippedImage)
 
@@ -61,7 +61,7 @@ test('05 works', async () => {
 
   await waitPort({host: 'localhost', port: 3000, output: 'silent'})
 
-  const image = await fetchSomeImage()
+  const image = await fetchFlippedImage()
 
   expect(image).toEqual(flippedImage)
 
@@ -95,7 +95,7 @@ test('07 works', async () => {
   await command.catch(() => {})
 })
 
-async function fetchSomeImage() {
+async function fetchFlippedImage() {
   const imageBuffer = await fetch('http://localhost:3000/flip/some-image').then((res) =>
     res.arrayBuffer(),
   )
